@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchedMovie from './SearchedMovie';
-import globalConfig from '../../config';
+import { apiKey } from '../../config';
 
 export default class SearchMovies extends Component {
   constructor(props) {
@@ -17,12 +17,12 @@ export default class SearchMovies extends Component {
     let value = event.target.value;
 
     if (value.length > 2) {
-      fetch('http://api.themoviedb.org/3/search/movie?query=' + value + '&api_key=' + globalConfig.apiKey, {
+      fetch('http://api.themoviedb.org/3/search/movie?query=' + value + '&api_key=' + apiKey, {
         method: 'get'
       })
         .then((response) => response.json())
         .then((data) => {
-          this.searchDropDown(data.results.slice(0, 4));
+          this.searchDropDown(data.results);
         })
         .catch((err) => console.log(err));
     } else {

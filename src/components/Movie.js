@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { posterPath } from '../../config';
 
 export default class Movie extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class Movie extends Component {
 
     return (
       <li onClick={this.handleClick} className={"movie " + this.state.seenMovie}>
-        <img src={"https://image.tmdb.org/t/p/w185/" + movieProps['poster_path']} />
+        <img src={posterPath + movieProps['poster_path']} />
         <div className="hide">
           <div>{movieProps.title}</div>
           <div>{movieProps.overview}</div>

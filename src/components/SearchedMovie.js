@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { posterPath } from '../../config';
+import ActionButtons from './ActionButtons';
 
 export default class SearchedMovie extends Component {
   constructor(props) {
@@ -18,11 +20,20 @@ export default class SearchedMovie extends Component {
     let movieVal = this.props.returnedMovie,
       formatDate = '';
 
+    console.log(movieVal);
+
     if (movieVal['release_date']) {
       formatDate = '(' + movieVal['release_date'].substring(0, 4) + ')';
     }
 
-    return <li movieId={movieVal.id} onClick={this.handleSearchedMovieClick}>{movieVal.title} {formatDate}</li>;
+    return (
+      <li>
+        <img src={posterPath + movieVal['poster_path']} alt={movieVal.title} />
+        {movieVal.title}
+        {formatDate}
+        <ActionButtons />
+      </li>
+    );
   }
 }
 
