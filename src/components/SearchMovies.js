@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SearchedMovie from '../SearchedMovie';
+import SearchedMovie from './SearchedMovie';
 import globalConfig from '../../config';
 
 export default class SearchMovies extends Component {
