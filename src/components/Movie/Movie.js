@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { posterPath } from '../../config';
+import { posterPath } from '../../../config';
 
 export default class Movie extends Component {
   constructor(props) {

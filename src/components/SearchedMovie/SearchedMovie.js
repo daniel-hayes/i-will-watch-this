@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { posterPath } from '../../config';
-import ActionButtons from './ActionButtons';
+import { posterPath } from '../../../config';
+import ActionButtons from '../ActionButtons';
 
 export default class SearchedMovie extends Component {
   constructor(props) {
