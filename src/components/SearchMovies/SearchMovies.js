@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchedMovie from './SearchedMovie';
-import { apiKey } from '../../config';
+import SearchedMovie from '../SearchedMovie';
+import { apiKey } from '../../../config';
 
 export default class SearchMovies extends Component {
   constructor(props) {

@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "AddRemoveButton",
+  "main": "./AddRemoveButton.js"
+}

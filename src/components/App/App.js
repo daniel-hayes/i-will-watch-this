@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import globalConfig from '../../config';
-
-import SearchMovies from './SearchMovies';
-import MovieList from './MovieList';
-
-console.log(globalConfig);
+import SearchMovies from '../SearchMovies';
+import MovieList from '../MovieList';
 
 const App = () => (
   <div className="container">
