@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { posterPath } from '../../../config';
-import ActionButtons from '../ActionButtons';
+import { posterPath, firebaseUrl } from '../../../config';
+import AddRemoveButton from '../AddRemoveButton';
+import InfoButton from '../InfoButton';
+import Rebase from 're-base';
+
+const baseUrl = Rebase.createClass(firebaseUrl);
 
 export default class SearchedMovie extends Component {
   constructor(props) {
@@ -9,11 +13,20 @@ export default class SearchedMovie extends Component {
     this.handleSearchedMovieClick = this.handleSearchedMovieClick.bind(this);
   }
 
-  handleSearchedMovieClick(event) {
-    console.log(this);
-    console.log(event);
-    console.log(event.target);
-    // React.findDOMNode(this)
+  handleSearchedMovieClick() {
+    console.log(this.props);
+    let addMovie = this.props.returnedMovie;
+
+    // TODO Clean up
+    baseUrl.post(`movieList/${addMovie.id}`, {
+      data: {
+        title: addMovie.title,
+        posterPath: addMovie['poster_path'],
+        overview: addMovie.overview,
+        releaseDate: addMovie['release_date'],
+        voteAverage: addMovie['vote_average']
+      }
+    });
   }
 
   render() {
@@ -31,43 +44,9 @@ export default class SearchedMovie extends Component {
         <img src={posterPath + movieVal['poster_path']} alt={movieVal.title} />
         {movieVal.title}
         {formatDate}
-        <ActionButtons />
+        <AddRemoveButton handleClick={this.handleSearchedMovieClick} />
+        <InfoButton />
       </li>
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-// class CommentForm extends React.Component {
-//   handleSubmit(e) {
-//     e.preventDefault();
-//     var author = React.findDOMNode(this.refs.author).value.trim();
-//     var text = React.findDOMNode(this.refs.text).value.trim();
-//     if (!text || !author) {
-//       return;
-//     }
-//     this.props.onCommentSubmit({author: author, text: text});
-//     React.findDOMNode(this.refs.author).value = '';
-//     React.findDOMNode(this.refs.text).value = '';
-//     return;
-//   }
-
-//   render() {
-//     return (
-//       <form className="commentForm" onSubmit={this.handleSubmit.bind(this)}>
-//       <input type="text" placeholder="Your name" ref="author" />
-//       <input type="text" placeholder="Your comment" ref="text" />
-//       <input type="submit" value="Post" />
-//       </form>
-//     )
-//   }
-// }

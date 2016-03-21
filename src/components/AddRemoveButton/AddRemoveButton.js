@@ -8,19 +8,19 @@ export default class AddRemoveButton extends Component {
       toggleListStatus: 'Add'
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    //this.handleClick = this.handleClick.bind(this);
   }
-
-  handleClick(event) {
-    console.log(event);
-    let listState = this.state.toggleListStatus === 'Add' ? 'Remove' : 'Add';
-    this.setState({
-      toggleListStatus: listState
-    });
-  }
+  //
+  //handleClick(event) {
+  //  console.log(event);
+  //  let listState = this.state.toggleListStatus === 'Add' ? 'Remove' : 'Add';
+  //  this.setState({
+  //    toggleListStatus: listState
+  //  });
+  //}
 
   render() {
-    return <div onClick={this.handleClick}>{this.state.toggleListStatus}</div>;
+    return <div onClick={this.props.handleClick}>{this.state.toggleListStatus}</div>;
   }
 }
 
