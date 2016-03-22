@@ -10,21 +10,33 @@ export default class SearchedMovie extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      listStatus: 'Add'
+    };
+
     this.handleSearchedMovieClick = this.handleSearchedMovieClick.bind(this);
   }
 
   handleSearchedMovieClick() {
-    console.log(this.props);
-    let addMovie = this.props.returnedMovie;
+    let newStatus = '';
 
-    // TODO Clean up
-    baseUrl.post(`movieList/${addMovie.id}`, {
+    if(this.state.listStatus === 'Add') {
+      this.addToList(this.props.returnedMovie);
+      newStatus = 'Remove';
+    } else {
+      newStatus = 'Add';
+    }
+
+    this.setState({ listStatus: newStatus });
+  }
+
+  addToList(returnedMovie) {
+    baseUrl.post(`movieList/${returnedMovie.id}`, {
       data: {
-        title: addMovie.title,
-        posterPath: addMovie['poster_path'],
-        overview: addMovie.overview,
-        releaseDate: addMovie['release_date'],
-        voteAverage: addMovie['vote_average']
+        title: returnedMovie.title,
+        posterPath: returnedMovie['poster_path'],
+        overview: returnedMovie.overview,
+        releaseDate: returnedMovie['release_date']
       }
     });
   }
@@ -33,19 +45,16 @@ export default class SearchedMovie extends Component {
     let movieVal = this.props.returnedMovie,
       formatDate = '';
 
-    console.log(movieVal);
-
     if (movieVal['release_date']) {
       formatDate = '(' + movieVal['release_date'].substring(0, 4) + ')';
     }
 
     return (
-      <li>
+      <li className="movie">
         <img src={posterPath + movieVal['poster_path']} alt={movieVal.title} />
         {movieVal.title}
         {formatDate}
-        <AddRemoveButton handleClick={this.handleSearchedMovieClick} />
-        <InfoButton />
+        <AddRemoveButton handleClick={this.handleSearchedMovieClick} listStatus={this.state.listStatus} />
       </li>
     );
   }
