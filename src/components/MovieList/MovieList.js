@@ -13,8 +13,7 @@ export default class MovieList extends Component {
       moviesToWatch: []
     };
 
-    // TODO Remove this
-    //this.handleClick = this.handleClick.bind(this);
+    this.remove = this.remove.bind(this);
   }
 
   componentDidMount() {
@@ -25,19 +24,16 @@ export default class MovieList extends Component {
     });
   }
 
-  // TODO Remove this function
-  //handleClick() {
-  //  console.log('hi');
-  //  this.setState({
-  //    moviesToWatch: this.state.moviesToWatch.concat([obj])
-  //  });
-  //}
+  remove(index) {
+    let newList = this.state.moviesToWatch;
+    newList.splice(index, 1);
+    this.setState({ moviesToWatch: newList });
+  }
 
   render() {
     let listOfMovies = this.state.moviesToWatch;
     if (listOfMovies.length) {
-      //console.log(listOfMovies);
-      listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} movies={movie} />);
+      listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} index={i} remove={this.remove} movies={movie} />);
     }
     return (
       <div>
@@ -46,14 +42,4 @@ export default class MovieList extends Component {
       </div>
     );
   }
-  //
-  //render() {
-  //  let movie = '';
-  //  console.log(this.state);
-  //  return(
-  //    <ul>
-  //      <li onClick={this.handleClick}>{this.state.moviesToWatch}</li>
-  //    </ul>
-  //  )
-  //}
 }

@@ -24,44 +24,26 @@ export default class SearchedMovie extends Component {
       this.addToList(this.props.returnedMovie);
       newStatus = 'Remove';
     } else {
-      this.removeFromList(this.props.returnedMovie);
       newStatus = 'Add';
     }
 
-    this.state.listStatus = newStatus;
+    this.setState({ listStatus: newStatus });
   }
 
   addToList(returnedMovie) {
-    // TODO Clean up
     baseUrl.post(`movieList/${returnedMovie.id}`, {
       data: {
         title: returnedMovie.title,
         posterPath: returnedMovie['poster_path'],
         overview: returnedMovie.overview,
-        releaseDate: returnedMovie['release_date'],
-        voteAverage: returnedMovie['vote_average']
+        releaseDate: returnedMovie['release_date']
       }
     });
-
-    console.log(this);
-    console.log(this.state);
-  }
-
-  removeFromList(returnedMovie) {
-    //var newList = this.state.list;
-    //newList.splice(index, 1);
-    //this.setState({
-    //  list: newList
-    //})
-    console.log(this);
-    console.log(this.state);
   }
 
   render() {
     let movieVal = this.props.returnedMovie,
       formatDate = '';
-
-    //console.log(movieVal);
 
     if (movieVal['release_date']) {
       formatDate = '(' + movieVal['release_date'].substring(0, 4) + ')';
@@ -73,7 +55,6 @@ export default class SearchedMovie extends Component {
         {movieVal.title}
         {formatDate}
         <AddRemoveButton handleClick={this.handleSearchedMovieClick} listStatus={this.state.listStatus} />
-        <InfoButton />
       </li>
     );
   }

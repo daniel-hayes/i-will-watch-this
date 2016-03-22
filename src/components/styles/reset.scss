@@ -41,36 +41,3 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-// Global Styles
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  padding-top: 50px;
-}
-
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-input[type="text"] {
-
-}
-
-h1 {
-  font-size: 3rem;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-// Helpers
-.hide {
-  display: none;
-}
