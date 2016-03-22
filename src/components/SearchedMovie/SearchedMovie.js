@@ -10,41 +10,69 @@ export default class SearchedMovie extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      listStatus: 'Add'
+    };
+
     this.handleSearchedMovieClick = this.handleSearchedMovieClick.bind(this);
   }
 
   handleSearchedMovieClick() {
-    console.log(this.props);
-    let addMovie = this.props.returnedMovie;
+    let newStatus = '';
 
+    if(this.state.listStatus === 'Add') {
+      this.addToList(this.props.returnedMovie);
+      newStatus = 'Remove';
+    } else {
+      this.removeFromList(this.props.returnedMovie);
+      newStatus = 'Add';
+    }
+
+    this.state.listStatus = newStatus;
+  }
+
+  addToList(returnedMovie) {
     // TODO Clean up
-    baseUrl.post(`movieList/${addMovie.id}`, {
+    baseUrl.post(`movieList/${returnedMovie.id}`, {
       data: {
-        title: addMovie.title,
-        posterPath: addMovie['poster_path'],
-        overview: addMovie.overview,
-        releaseDate: addMovie['release_date'],
-        voteAverage: addMovie['vote_average']
+        title: returnedMovie.title,
+        posterPath: returnedMovie['poster_path'],
+        overview: returnedMovie.overview,
+        releaseDate: returnedMovie['release_date'],
+        voteAverage: returnedMovie['vote_average']
       }
     });
+
+    console.log(this);
+    console.log(this.state);
+  }
+
+  removeFromList(returnedMovie) {
+    //var newList = this.state.list;
+    //newList.splice(index, 1);
+    //this.setState({
+    //  list: newList
+    //})
+    console.log(this);
+    console.log(this.state);
   }
 
   render() {
     let movieVal = this.props.returnedMovie,
       formatDate = '';
 
-    console.log(movieVal);
+    //console.log(movieVal);
 
     if (movieVal['release_date']) {
       formatDate = '(' + movieVal['release_date'].substring(0, 4) + ')';
     }
 
     return (
-      <li>
+      <li className="movie">
         <img src={posterPath + movieVal['poster_path']} alt={movieVal.title} />
         {movieVal.title}
         {formatDate}
-        <AddRemoveButton handleClick={this.handleSearchedMovieClick} />
+        <AddRemoveButton handleClick={this.handleSearchedMovieClick} listStatus={this.state.listStatus} />
         <InfoButton />
       </li>
     );

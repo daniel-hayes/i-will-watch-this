@@ -41,7 +41,7 @@ export default class SearchMovies extends Component {
   render() {
     return (
       <div>
-        <input type="text" onChange={this.handleInput} />
+        <input type="text" placeholder="Search" onChange={this.handleInput} />
         <ul>{this.state.returnedMovies}</ul>
       </div>
     );

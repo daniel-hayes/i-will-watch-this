@@ -1,1 +1,13 @@
+.movie-list-container {
+}
 
+.movie {
+  float: left;
+  width: 20%;
+
+  img {
+    width: 80%;
+    //TODO fix this
+    height: 280px;
+  }
+}

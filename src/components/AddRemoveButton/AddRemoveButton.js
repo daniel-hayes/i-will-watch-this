@@ -1,27 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class AddRemoveButton extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      toggleListStatus: 'Add'
-    };
-
-    //this.handleClick = this.handleClick.bind(this);
-  }
-  //
-  //handleClick(event) {
-  //  console.log(event);
-  //  let listState = this.state.toggleListStatus === 'Add' ? 'Remove' : 'Add';
-  //  this.setState({
-  //    toggleListStatus: listState
-  //  });
-  //}
-
-  render() {
-    return <div onClick={this.props.handleClick}>{this.state.toggleListStatus}</div>;
-  }
-}
+const AddRemoveButton = (props) => (
+  <div onClick={props.handleClick}>
+    {console.log(props)}
+    {props.listStatus}
+  </div>
+);
 
 export default AddRemoveButton;

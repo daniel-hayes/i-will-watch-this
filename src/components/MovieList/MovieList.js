@@ -36,10 +36,15 @@ export default class MovieList extends Component {
   render() {
     let listOfMovies = this.state.moviesToWatch;
     if (listOfMovies.length) {
-      console.log(listOfMovies);
+      //console.log(listOfMovies);
       listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} movies={movie} />);
     }
-    return <ul>{listOfMovies}</ul>
+    return (
+      <div>
+        <h1>Saved Movies</h1>
+        <ul className="movie-list-container">{listOfMovies}</ul>
+      </div>
+    );
   }
   //
   //render() {

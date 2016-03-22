@@ -21,13 +21,13 @@ export default class Movie extends Component {
 
   render() {
     let movieProps = this.props.movies;
-    console.log(movieProps);
+    //console.log(movieProps);
 
     return (
       <li onClick={this.handleClick} className={"movie " + this.state.seenMovie}>
+        <h2 className="title">{movieProps.title}</h2>
         <img src={posterPath + movieProps.posterPath} />
         <div className="hide">
-          <div>{movieProps.title}</div>
           <div>{movieProps.overview}</div>
           <div>{movieProps.voteAverage}</div>
         </div>
