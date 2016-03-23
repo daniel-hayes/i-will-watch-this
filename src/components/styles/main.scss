@@ -1,17 +1,23 @@
 // Global Styles
 
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
 html {
   font-size: 62.5%;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  padding-top: 50px;
+  // padding-top: 50px;
+  background: #FCFFF5;
 }
 
 main {
-  max-width: 1200px;
-  margin: 0 auto;
+  padding-left: 230px;
+	height: 100%;
 }
 
 input[type="text"] {
