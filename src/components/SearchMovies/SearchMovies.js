@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchedMovie from '../SearchedMovie';
 import { apiKey } from '../../../config';
+import './SearchMovies.scss';
 
 export default class SearchMovies extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export default class SearchMovies extends Component {
     return (
       <div className="search text-center">
         <input type="text" placeholder="Search" onChange={this.handleInput} />
+        <button className="find-movie">Find Movie</button>
         <ul>{this.state.returnedMovies}</ul>
       </div>
     );

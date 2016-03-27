@@ -1,4 +1,9 @@
+@import './variables.scss';
+
 // Global Styles
+* {
+  box-sizing: border-box;
+}
 
 html, body {
 	height: 100%;
@@ -12,7 +17,7 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   // padding-top: 50px;
-  background: #FCFFF5;
+  background: $light;
 }
 
 main {
