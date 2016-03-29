@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { firebaseUrl } from '../../../config';
 import Movie from '../Movie';
-import SearchMovies from '../SearchMovies';
+import Overlay from '../Overlay';
 import './MovieList.scss';
 import Rebase from 're-base';
 
@@ -14,9 +14,11 @@ export default class MovieList extends Component {
 
     this.state = {
       moviesToWatch: [],
-      sortList: ''
+      sortList: '',
+      searchString: ''
     };
 
+    this.handleFilter = this.handleFilter.bind(this);
     this.sort = this.sort.bind(this);
     this.remove = this.remove.bind(this);
   }
@@ -27,6 +29,10 @@ export default class MovieList extends Component {
       state: 'moviesToWatch',
       asArray: true
     });
+  }
+
+  handleFilter(event) {
+    this.setState({ searchString: event.target.value });
   }
 
   sort() {
@@ -46,14 +52,21 @@ export default class MovieList extends Component {
   }
 
   render() {
-    let listOfMovies = this.state.moviesToWatch;
+    let listOfMovies = this.state.moviesToWatch,
+        searchString = this.state.searchString;
+
+    if (searchString.length) {
+      listOfMovies = listOfMovies.filter(m => m.title.toLowerCase().match(searchString));
+    }
+
     if (listOfMovies.length) {
       listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} index={i} remove={this.remove} movies={movie} />);
     }
     return (
       <div className="movie-list-wrapper">
         <div onClick={this.sort}>sort</div>
-        <SearchMovies />
+        <input type="text" placeholder="Search saved movies" onChange={this.handleFilter} />
+        <Overlay />
         <ul className="movie-list-container">{listOfMovies}</ul>
       </div>
     );

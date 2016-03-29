@@ -3,12 +3,17 @@ import SearchedMovie from '../SearchedMovie';
 import { apiKey } from '../../../config';
 import './SearchMovies.scss';
 
+let defaultWidth = 30;
+
 export default class SearchMovies extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      returnedMovies: ''
+      returnedMovies: '',
+      searchValue: '',
+      inputWidth: {width: defaultWidth},
+      mounting: false
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -17,6 +22,12 @@ export default class SearchMovies extends Component {
   handleInput(event) {
     let value = event.target.value;
 
+    this.setState({
+      searchValue: value,
+      mounting: true
+    });
+
+    // call movie db api
     if (value.length > 2) {
       fetch('http://api.themoviedb.org/3/search/movie?query=' + value + '&api_key=' + apiKey, {
         method: 'get'
@@ -39,10 +50,22 @@ export default class SearchMovies extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.state.mounting === true) {
+      this.setState({
+        inputWidth: {width: document.getElementById('hiddenSearch').offsetWidth + defaultWidth},
+        mounting: false
+      });
+    }
+  }
+
   render() {
     return (
       <div className="text-center">
-        <input className="search" type="text" placeholder="Add Movie" onChange={this.handleInput} />
+        <label className="search-label" for="search">
+          <input id="search" className="search text-center" type="text" onChange={this.handleInput} style={this.state.inputWidth} />
+        </label>
+        <span id="hiddenSearch" className="hidden-search-value">{this.state.searchValue}</span>
         <ul>{this.state.returnedMovies}</ul>
       </div>
     );

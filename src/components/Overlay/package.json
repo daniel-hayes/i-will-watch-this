@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "Overlay",
+  "main": "./Overlay.js"
+}
