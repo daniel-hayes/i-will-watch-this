@@ -1,34 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Header.scss';
-import hamburger from './hamburger.png';
-import add from './add.png';
 
-export default class Header extends Component {
-  constructor() {
-    super();
+const Header = (props) => (
+  <header>
+    <button className="nav-button" onClick={props.toggleNav}>
+      <i className="icon-list"></i>
+    </button>
+    <h1 className="page-title lg-txt text-center">Saved Movies</h1>
+    <button className="search-button" onClick={props.toggleOverlay}>
+      <i className="icon-plus"></i>
+    </button>
+  </header>
+);
 
-    this.state = {
-      nav: ''
-    };
-
-    this.handleNav = this.handleNav.bind(this);
-  }
-
-  handleNav() {
-    document.body.classList.toggle('nav-open');
-  }
-
-  render() {
-    return (
-      <header>
-        <div className="nav-button" role="button" onClick={this.handleNav}>
-          <img src={hamburger} alt="menu" />
-        </div>
-        <h1 className="page-title lg-txt text-center">Saved Movies</h1>
-        <div className="search-button" role="button" onClick={this.handleNav}>
-          <img src={add} alt="add movie" />
-        </div>
-      </header>
-    );
-  }
-}
+export default Header;

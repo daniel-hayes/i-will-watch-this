@@ -59,10 +59,15 @@ export default class SearchMovies extends Component {
     }
   }
 
+  componentDidMount() {
+    document.getElementById('search').focus();
+  }
+
   render() {
     return (
       <div className="text-center">
         <label className="search-label" for="search">
+          <i className="icon-search"></i>
           <input id="search" className="search text-center" type="text" onChange={this.handleInput} style={this.state.inputWidth} />
         </label>
         <span id="hiddenSearch" className="hidden-search-value">{this.state.searchValue}</span>

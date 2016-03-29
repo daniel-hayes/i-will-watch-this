@@ -26,8 +26,12 @@ module.exports = {
         loader: 'style!css!sass'
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: 'url-loader'
+      },
+      {
+        test: /\.(eot|ttf)$/,
+        loader: 'file-loader'
       }
     ],
     resolve: {

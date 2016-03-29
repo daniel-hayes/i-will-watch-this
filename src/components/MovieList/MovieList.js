@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { firebaseUrl } from '../../../config';
 import Movie from '../Movie';
-import Overlay from '../Overlay';
 import './MovieList.scss';
 import Rebase from 're-base';
 
@@ -66,7 +65,6 @@ export default class MovieList extends Component {
       <div className="movie-list-wrapper">
         <div onClick={this.sort}>sort</div>
         <input type="text" placeholder="Search saved movies" onChange={this.handleFilter} />
-        <Overlay />
         <ul className="movie-list-container">{listOfMovies}</ul>
       </div>
     );
