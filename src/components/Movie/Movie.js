@@ -10,5 +10,4 @@ const Movie = (props) => (
     </div>
   </li>
 );
-
 export default Movie;

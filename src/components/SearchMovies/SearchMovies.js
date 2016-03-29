@@ -41,9 +41,8 @@ export default class SearchMovies extends Component {
 
   render() {
     return (
-      <div className="search text-center">
-        <input type="text" placeholder="Search" onChange={this.handleInput} />
-        <button className="find-movie">Find Movie</button>
+      <div className="text-center">
+        <input className="search" type="text" placeholder="Add Movie" onChange={this.handleInput} />
         <ul>{this.state.returnedMovies}</ul>
       </div>
     );

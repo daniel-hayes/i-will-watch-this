@@ -1,13 +1,18 @@
-.movie-list-container {
-}
-
 .movie {
   float: left;
-  width: 20%;
+  //width: 20%;
+  width: 100%;
+  max-width: 190px;
+  min-height: 280px;
+  padding: 0 5px;
 
   img {
-    width: 80%;
+    //width: 80%;
     //TODO fix this
-    height: 280px;
+    //width: 185px;
+    //height: 280px;
+    width: 100%;
+    height: 100%;
+    background: #C5C5C5;
   }
 }

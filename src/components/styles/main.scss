@@ -1,6 +1,9 @@
 @import './variables.scss';
 
-// Global Styles
+/**
+* Global Styles
+**/
+
 * {
   box-sizing: border-box;
 }
@@ -16,24 +19,33 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  // padding-top: 50px;
+  padding-top: 50px;
   background: $light;
+
+  &.nav-open {
+    overflow: hidden;
+  }
 }
 
 main {
-  padding-left: 230px;
 	height: 100%;
+  transition-duration: 300ms;
+  position: relative;
+
+  .nav-open & {
+    left: 230px;
+  }
 }
 
 input[type="text"] {
 
 }
 
-h1 {
+.xlg-txt {
   font-size: 3rem;
 }
 
-h2 {
+.lg-txt {
   font-size: 2rem;
 }
 

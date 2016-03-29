@@ -1,0 +1,28 @@
+@import '../styles/variables.scss';
+
+header {
+  position: relative;
+  .page-title {
+    color: $white;
+    padding: 14px 0;
+  }
+}
+
+.nav-button,
+.search-button {
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+
+  img {
+    width: 25px;
+  }
+}
+
+.nav-button {
+  left: 10px;
+}
+
+.search-button {
+  right: 10px;
+}
