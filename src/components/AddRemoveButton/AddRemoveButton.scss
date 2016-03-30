@@ -1,0 +1,20 @@
+@import '../styles/variables.scss';
+
+.poster-action {
+  position: relative;
+  top: 0;
+  left: 0;
+  opacity: 0;
+
+  i {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .movie:hover & {
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    font-size: 3rem;
+    color: $white;
+  }
+}

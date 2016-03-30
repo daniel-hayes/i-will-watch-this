@@ -6,7 +6,8 @@ const Header = (props) => (
     <button className="nav-button" onClick={props.toggleNav}>
       <i className="icon-list"></i>
     </button>
-    <h1 className="page-title lg-txt text-center">Saved Movies</h1>
+    <h1 className="page-title lg-txt text-center">Saved Movies <span className="count">{props.savedMovies || ''}</span></h1>
+    <div className="icon-export"></div>
     <button className="search-button" onClick={props.toggleOverlay}>
       <i className="icon-plus"></i>
     </button>

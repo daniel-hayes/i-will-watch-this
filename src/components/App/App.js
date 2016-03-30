@@ -5,17 +5,23 @@ import Nav from '../Nav';
 import Overlay from '../Overlay';
 import Footer from '../Footer';
 import '../App/App.scss';
+import { firebaseUrl } from '../../../config';
+import Rebase from 're-base';
+
+const baseUrl = Rebase.createClass(firebaseUrl);
 
 export default class App extends Component {
 	constructor() {
 		super();
 
 		this.state = {
-			overlayOpen: false
+			overlayOpen: false,
+      moviesToWatch: []
 		};
-		
+
 		this.handleNav = this.handleNav.bind(this);
 		this.handleOverlay = this.handleOverlay.bind(this);
+    this.removeMovie = this.removeMovie.bind(this);
 	}
 
 	handleNav() {
@@ -28,15 +34,30 @@ export default class App extends Component {
 		document.body.classList.toggle('overflow-hidden');
 	}
 
+
+  removeMovie(index) {
+    let newList = this.state.moviesToWatch;
+    newList.splice(index, 1);
+    this.setState({ moviesToWatch: newList });
+  }
+
+  componentDidMount() {
+    baseUrl.syncState('movieList', {
+      context: this,
+      state: 'moviesToWatch',
+      asArray: true
+    });
+  }
+
 	render() {
 		let overlay = this.state.overlayOpen === true ? <Overlay closeOverlay={this.handleOverlay} /> : '';
 
 		return (
 		  <div className="container">
 		    <Nav />
-		  	<Header toggleNav={this.handleNav} toggleOverlay={this.handleOverlay} />
+		  	<Header toggleNav={this.handleNav} toggleOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch.length} />
 			  <div className="content">
-		    	<MovieList />
+		    	<MovieList moviesToWatch={this.state.moviesToWatch} removeMovie={this.removeMovie} />
 		      <Footer />
 		      {overlay}
 			  </div>

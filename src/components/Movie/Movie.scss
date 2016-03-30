@@ -9,7 +9,7 @@
   padding-right: 5px;
   height: 0;
   margin-bottom: 45px;
-  
+
   @media #{$phone} {
     width: 33.3333333333%;
     padding-bottom: 50%;
@@ -45,11 +45,12 @@
     position: absolute;
     bottom: -20px;
     width: 95%;
+    line-height: 2rem;
 
     .title {
       text-overflow: ellipsis;
       overflow: hidden;
-      white-space: nowrap;      
+      white-space: nowrap;
     }
   }
 }

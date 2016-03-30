@@ -65,8 +65,8 @@ export default class SearchMovies extends Component {
 
   render() {
     return (
-      <div className="text-center">
-        <label className="search-label" for="search">
+      <div>
+        <label className="search-label text-center" for="search">
           <i className="icon-search"></i>
           <input id="search" className="search text-center" type="text" onChange={this.handleInput} style={this.state.inputWidth} />
         </label>

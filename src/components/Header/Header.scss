@@ -12,13 +12,32 @@ header {
 .nav-button,
 .search-button {
   position: absolute;
-  top: 10px;
+  top: 0;
+  border: none;
+  background: none;
+  font-size: 3.6rem;
+  color: $white;
+  cursor: pointer;
 }
 
 .nav-button {
-  left: 10px;
+  left: 5px;
 }
 
 .search-button {
-  right: 10px;
+  right: 5px;
+}
+
+.count {
+  background: $white;
+  color: $medBlue;
+  position: relative;
+  top: -2px;
+  left: 5px;
+  border-radius: 15px;
+  font-size: 1.4rem;
+  width: 24px;
+  height: 16px;
+  display: inline-block;
+  line-height: 1.6rem;
 }

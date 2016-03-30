@@ -44,18 +44,14 @@ export default class SearchedMovie extends Component {
 
   render() {
     let movieVal = this.props.returnedMovie,
-      formatDate = '',
-      poster = movieVal['poster_path'] ? <img src={posterPath + movieVal['poster_path']} alt={movieVal.title} /> : <PosterNotFound />;
-
-    if (movieVal['release_date']) {
-      formatDate = '(' + movieVal['release_date'].substring(0, 4) + ')';
-    }
+      poster = movieVal['poster_path'] ? <img className="poster" src={posterPath + movieVal['poster_path']} alt={movieVal.title} /> : <PosterNotFound />;
 
     return (
       <li className="movie">
         {poster}
-        {movieVal.title}
-        {formatDate}
+        <div className="title-wrapper">
+          <p className="title">{movieVal.title}</p>
+        </div>
         <AddRemoveButton handleClick={this.handleSearchedMovieClick} listStatus={this.state.listStatus} />
       </li>
     );
