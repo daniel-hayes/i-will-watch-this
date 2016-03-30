@@ -71,7 +71,7 @@ export default class SearchMovies extends Component {
           <input id="search" className="search text-center" type="text" onChange={this.handleInput} style={this.state.inputWidth} />
         </label>
         <span id="hiddenSearch" className="hidden-search-value">{this.state.searchValue}</span>
-        <ul>{this.state.returnedMovies}</ul>
+        <ul className="content">{this.state.returnedMovies}</ul>
       </div>
     );
   }

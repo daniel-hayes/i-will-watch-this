@@ -1,4 +1,9 @@
-// Helpers
+@import './variables.scss';
+
+/**
+* Helpers
+**/
+
 .hide {
   display: none;
 }
@@ -8,5 +13,5 @@
 }
 
 .overflow-hidden {
-	overflow: hidden;
+	@include preventScroll();
 }

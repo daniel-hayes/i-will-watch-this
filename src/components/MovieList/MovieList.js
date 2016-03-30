@@ -13,12 +13,10 @@ export default class MovieList extends Component {
 
     this.state = {
       moviesToWatch: [],
-      sortList: '',
       searchString: ''
     };
 
     this.handleFilter = this.handleFilter.bind(this);
-    this.sort = this.sort.bind(this);
     this.remove = this.remove.bind(this);
   }
 
@@ -31,17 +29,7 @@ export default class MovieList extends Component {
   }
 
   handleFilter(event) {
-    this.setState({ searchString: event.target.value });
-  }
-
-  sort() {
-    this.setState({ sortList: 'asc' });
-
-    this.state.moviesToWatch.sort((a, b) => {
-      let titleA = a.title.toUpperCase(),
-        titleB = b.title.toUpperCase();
-      return (titleA < titleB) ? -1 : (titleA > titleB) ? 1 : 0;
-    });
+    this.setState({ searchString: event.target.value.toLowerCase() });
   }
 
   remove(index) {
@@ -63,7 +51,6 @@ export default class MovieList extends Component {
     }
     return (
       <div className="movie-list-wrapper">
-        <div onClick={this.sort}>sort</div>
         <input type="text" placeholder="Search saved movies" onChange={this.handleFilter} />
         <ul className="movie-list-container">{listOfMovies}</ul>
       </div>

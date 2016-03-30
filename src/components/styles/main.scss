@@ -25,7 +25,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   &.nav-open {
-    overflow: hidden;
+    @include preventScroll();
   }
 }
 
@@ -40,7 +40,7 @@ main {
 }
 
 input[type="text"] {
-
+  font-family: 'Roboto', sans-serif;
 }
 
 /**

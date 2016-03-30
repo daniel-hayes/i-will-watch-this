@@ -5,6 +5,7 @@ import './Overlay.scss';
 const Overlay = (props) => (
   <div className="overlay">
   	<i className="icon-cancel" onClick={props.closeOverlay}></i>
+  	<h1 className="text-center lg-txt">Search Movies</h1>
     <SearchMovies />
   </div>
 );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { posterPath, firebaseUrl } from '../../../config';
 import AddRemoveButton from '../AddRemoveButton';
 import InfoButton from '../InfoButton';
+import PosterNotFound from '../PosterNotFound';
 import Rebase from 're-base';
 
 const baseUrl = Rebase.createClass(firebaseUrl);
@@ -43,7 +44,8 @@ export default class SearchedMovie extends Component {
 
   render() {
     let movieVal = this.props.returnedMovie,
-      formatDate = '';
+      formatDate = '',
+      poster = movieVal['poster_path'] ? <img src={posterPath + movieVal['poster_path']} alt={movieVal.title} /> : <PosterNotFound />;
 
     if (movieVal['release_date']) {
       formatDate = '(' + movieVal['release_date'].substring(0, 4) + ')';
@@ -51,7 +53,7 @@ export default class SearchedMovie extends Component {
 
     return (
       <li className="movie">
-        <img src={posterPath + movieVal['poster_path']} alt={movieVal.title} />
+        {poster}
         {movieVal.title}
         {formatDate}
         <AddRemoveButton handleClick={this.handleSearchedMovieClick} listStatus={this.state.listStatus} />

@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "PosterNotFound",
+  "main": "./PosterNotFound.js"
+}
