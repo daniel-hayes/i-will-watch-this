@@ -52,6 +52,8 @@ export default class App extends Component {
 	render() {
 		let overlay = this.state.overlayOpen === true ? <Overlay closeOverlay={this.handleOverlay} /> : '';
 
+    console.log(this.state.moviesToWatch);
+
 		return (
 		  <div className="container">
 		    <Nav />
