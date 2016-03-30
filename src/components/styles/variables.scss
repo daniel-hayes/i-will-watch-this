@@ -1,4 +1,24 @@
-// colors
+/**
+* Colors
+**/
 $white: #ffffff;
 $light: #E8E8E8;
 $medBlue: #3E606F;
+
+/**
+* Break Points
+**/
+
+$phone: "only screen and (min-width: 420px)";
+$tab: "only screen and (min-width: 768px)";
+$desktop: "only screen and (min-width: 992px)";
+$lg: "only screen and (min-width: 1200px)";
+
+/**
+* Mixins
+**/
+
+@mixin preventScroll() {
+  overflow: hidden;
+  position: fixed;
+}

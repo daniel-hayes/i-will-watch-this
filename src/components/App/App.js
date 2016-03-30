@@ -1,26 +1,69 @@
 import React, { Component } from 'react';
-import SearchMovies from '../SearchMovies';
 import MovieList from '../MovieList';
+import Header from '../Header';
+import Nav from '../Nav';
+import Overlay from '../Overlay';
+import Footer from '../Footer';
 import '../App/App.scss';
+import { firebaseUrl } from '../../../config';
+import Rebase from 're-base';
 
-const App = () => (
-  <div className="container">
-  	<header>this is the header</header>
-	  <nav>
-			<h1 className="page-title text-center">IWWT</h1>
-			<h2>Add Movie</h2>
-			<h2>List 1</h2>
-			<h2>List 2</h2>
-			<h2>List 3</h2>
-			<h2>List 4</h2>
-			<h2>List 5</h2>
-			<h2>List 6</h2>
-	  </nav>
-	  <div className="content">
-    	<MovieList />
-      <SearchMovies />
-	  </div>
-  </div>
-);
+const baseUrl = Rebase.createClass(firebaseUrl);
 
-export default App;
+export default class App extends Component {
+	constructor() {
+		super();
+
+		this.state = {
+			overlayOpen: false,
+      moviesToWatch: []
+		};
+
+		this.handleNav = this.handleNav.bind(this);
+		this.handleOverlay = this.handleOverlay.bind(this);
+    this.removeMovie = this.removeMovie.bind(this);
+	}
+
+	handleNav() {
+    document.body.classList.toggle('nav-open');
+  }
+
+	handleOverlay() {
+		let overlayState = this.state.overlayOpen === false ? true : false;
+		this.setState({ overlayOpen: overlayState });
+		document.body.classList.toggle('overflow-hidden');
+	}
+
+
+  removeMovie(index) {
+    let newList = this.state.moviesToWatch;
+    newList.splice(index, 1);
+    this.setState({ moviesToWatch: newList });
+  }
+
+  componentDidMount() {
+    baseUrl.syncState('movieList', {
+      context: this,
+      state: 'moviesToWatch',
+      asArray: true
+    });
+  }
+
+	render() {
+		let overlay = this.state.overlayOpen === true ? <Overlay closeOverlay={this.handleOverlay} /> : '';
+
+    console.log(this.state.moviesToWatch);
+
+		return (
+		  <div className="container">
+		    <Nav />
+		  	<Header toggleNav={this.handleNav} toggleOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch.length} />
+			  <div className="content">
+		    	<MovieList moviesToWatch={this.state.moviesToWatch} removeMovie={this.removeMovie} />
+		      <Footer />
+		      {overlay}
+			  </div>
+		  </div>
+		);
+	}
+}

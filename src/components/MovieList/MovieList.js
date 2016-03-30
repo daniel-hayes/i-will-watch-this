@@ -1,43 +1,38 @@
 import React, { Component } from 'react';
-import { firebaseUrl } from '../../../config';
 import Movie from '../Movie';
-import Rebase from 're-base';
+import './MovieList.scss';
 
-const baseUrl = Rebase.createClass(firebaseUrl);
 
 export default class MovieList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      moviesToWatch: []
+      searchString: ''
     };
 
-    this.remove = this.remove.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
-  componentDidMount() {
-    baseUrl.syncState('movieList', {
-      context: this,
-      state: 'moviesToWatch',
-      asArray: true
-    });
-  }
-
-  remove(index) {
-    let newList = this.state.moviesToWatch;
-    newList.splice(index, 1);
-    this.setState({ moviesToWatch: newList });
+  handleFilter(event) {
+    this.setState({ searchString: event.target.value.toLowerCase() });
   }
 
   render() {
-    let listOfMovies = this.state.moviesToWatch;
-    if (listOfMovies.length) {
-      listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} index={i} remove={this.remove} movies={movie} />);
+    let listOfMovies = this.props.moviesToWatch,
+        searchString = this.state.searchString;
+
+    if (searchString.length) {
+      listOfMovies = listOfMovies.filter(m => m.title.toLowerCase().match(searchString));
     }
+
+    if (listOfMovies.length) {
+      listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} index={i} remove={this.props.removeMovie} movies={movie} />);
+    }
+
     return (
-      <div>
-        <h1>Saved Movies</h1>
+      <div className="movie-list-wrapper">
+        <input type="text" className="filter" placeholder="Search saved movies" onChange={this.handleFilter} />
         <ul className="movie-list-container">{listOfMovies}</ul>
       </div>
     );

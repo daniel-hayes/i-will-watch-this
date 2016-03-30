@@ -1,8 +1,9 @@
 import React from 'react';
+import './AddRemoveButton.scss';
 
 const AddRemoveButton = (props) => (
-  <div onClick={props.handleClick}>
-    {props.listStatus}
+  <div className="poster-action" onClick={props.handleClick}>
+    <i className="icon-list-add"></i>
   </div>
 );
 

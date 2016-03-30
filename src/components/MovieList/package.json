@@ -1,5 +1,5 @@
 {
-  "private": true,
-  "name": "MovieList",
-  "main": "./MovieList.js"
+"private": true,
+"name": "MovieList",
+"main": "./MovieList.js"
 }

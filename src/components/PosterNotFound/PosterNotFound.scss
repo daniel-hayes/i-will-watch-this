@@ -1,0 +1,28 @@
+@import '../styles/variables.scss';
+
+.poster-not-found {
+	position: relative;
+	color: $light;
+	text-align: center;
+
+	&-info {
+		position: absolute;
+    padding-left: 10px;
+    padding-right: 10px;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+
+    p {
+    	font-size: 2rem;
+    }
+	}
+
+	.icon-video {
+		display: block;
+		text-align: center;
+		font-size: 5rem;
+    margin-top: 20px;
+	}
+}

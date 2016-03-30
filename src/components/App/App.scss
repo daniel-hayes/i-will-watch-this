@@ -3,29 +3,19 @@
 header {
 	position: fixed;
 	top: 0;
+  height: 50px;
+  background: $medBlue;
+  width: 100%;
 }
 
-nav	{
-	color: $light;
-	background: $medBlue;
-	// background: #193441;
-	position: fixed;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  left: 0;
+.container {
+  width: 100%;
   height: 100%;
-  transition-duration: .3s;
-  width: 230px;
 }
 
 .content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-}
-
-.page-title {
-
+  height: 100%;
 }

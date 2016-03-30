@@ -1,14 +1,35 @@
-@import '../styles/styles.scss';
+@import '../styles/variables.scss';
 
-.find-movie {
-  font-size: 1.8rem;
-  color: $white;
-  background: #5bc0de;
-  width: auto;
+.search {
   padding: 0;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  overflow: hidden;
-  white-space: nowrap;
+  border: none;
+  box-shadow: none;
+  background: none;
+  outline: none;
+  height: 100%;
+}
+
+.search-label {
+  cursor: text;
+  width: 100%;
+  height: 75px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  .icon-search {
+    font-size: 3rem;
+  }
+}
+
+.search,
+.hidden-search-value {
+  font-size: 3rem;
+}
+
+.hidden-search-value {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  white-space: pre;
 }
