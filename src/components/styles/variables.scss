@@ -4,6 +4,7 @@
 $white: #ffffff;
 $light: #E8E8E8;
 $medBlue: #3E606F;
+$overlay: rgba(255, 255, 255, 0.97);
 
 /**
 * Break Points
@@ -21,4 +22,11 @@ $lg: "only screen and (min-width: 1200px)";
 @mixin preventScroll() {
   overflow: hidden;
   position: fixed;
+}
+
+@mixin center() {
+	top: 50%;
+	left: 0;
+  width: 100%;
+  transform: translateY(-50%);
 }

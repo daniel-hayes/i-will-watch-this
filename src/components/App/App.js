@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MovieList from '../MovieList';
 import Header from '../Header';
-import Nav from '../Nav';
 import Overlay from '../Overlay';
 import Footer from '../Footer';
 import '../App/App.scss';
@@ -19,21 +18,15 @@ export default class App extends Component {
       moviesToWatch: []
 		};
 
-		this.handleNav = this.handleNav.bind(this);
 		this.handleOverlay = this.handleOverlay.bind(this);
     this.removeMovie = this.removeMovie.bind(this);
 	}
-
-	handleNav() {
-    document.body.classList.toggle('nav-open');
-  }
 
 	handleOverlay() {
 		let overlayState = this.state.overlayOpen === false ? true : false;
 		this.setState({ overlayOpen: overlayState });
 		document.body.classList.toggle('overflow-hidden');
 	}
-
 
   removeMovie(index) {
     let newList = this.state.moviesToWatch;
@@ -56,8 +49,7 @@ export default class App extends Component {
 
 		return (
 		  <div className="container">
-		    <Nav />
-		  	<Header toggleNav={this.handleNav} toggleOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch.length} />
+		  	<Header toggleOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch.length} />
 			  <div className="content">
 		    	<MovieList moviesToWatch={this.state.moviesToWatch} removeMovie={this.removeMovie} />
 		      <Footer />

@@ -7,25 +7,25 @@ header {
     color: $white;
     padding: 14px 0;
   }
+
+  .app-name {
+    position: absolute;
+    top: 0;
+    left: 5px;
+  }
 }
 
-.nav-button,
 .search-button {
   position: absolute;
   top: 0;
+  right: 5px;
+  width: 50px;
+  height: 50px;
   border: none;
   background: none;
   font-size: 3.6rem;
   color: $white;
   cursor: pointer;
-}
-
-.nav-button {
-  left: 5px;
-}
-
-.search-button {
-  right: 5px;
 }
 
 .count {
@@ -36,8 +36,7 @@ header {
   left: 5px;
   border-radius: 15px;
   font-size: 1.4rem;
-  width: 24px;
-  height: 16px;
   display: inline-block;
   line-height: 1.6rem;
+  padding: 2px 8px;
 }

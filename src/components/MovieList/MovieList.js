@@ -32,7 +32,10 @@ export default class MovieList extends Component {
 
     return (
       <div className="movie-list-wrapper">
-        <input type="text" className="filter" placeholder="Search saved movies" onChange={this.handleFilter} />
+        <label className="filter-label" for="filter">
+          <i className="icon-search"></i>
+          <input type="text" className="filter" id="filter" placeholder="Search saved movies" onChange={this.handleFilter} />
+        </label>
         <ul className="movie-list-container">{listOfMovies}</ul>
       </div>
     );

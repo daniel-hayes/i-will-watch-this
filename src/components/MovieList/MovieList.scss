@@ -1,17 +1,31 @@
+@import '../styles/variables.scss';
+
 .movie-list-wrapper {
   float: left;
   width: 100%;
 
-  .filter {
+  .filter-label {
+    cursor: text;
     width: 100%;
+    display: block;
+
+    .icon-search {
+      color: #A9A9A9;
+      font-size: 2rem;
+    }
+  }
+
+  .filter {
     height: 40px;
     max-width: 400px;
     font-size: 2rem;
     padding-right: 10px;
     padding-left: 10px;
-    margin-right: 5px;
-    margin-left: 5px;
     margin-bottom: 20px;
+    border: none;
+    box-shadow: none;
+    background: none;
+    outline: none;
   }
 }
 
