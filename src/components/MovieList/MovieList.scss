@@ -9,6 +9,10 @@
     width: 100%;
     display: block;
 
+    @media #{$tab} {
+      width: 50%;
+    }
+
     .icon-search {
       color: #A9A9A9;
       font-size: 2rem;
