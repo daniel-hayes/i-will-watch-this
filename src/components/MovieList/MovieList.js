@@ -18,7 +18,7 @@ export default class MovieList extends Component {
   }
 
   render() {
-    let listOfMovies = this.props.moviesToWatch,
+    let listOfMovies = this.props.moviesToWatch.reverse(),
         searchString = this.state.searchString;
 
     if (searchString.length) {
