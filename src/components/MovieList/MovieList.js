@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Movie from '../Movie';
 import './MovieList.scss';
 
-
 export default class MovieList extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +26,14 @@ export default class MovieList extends Component {
     }
 
     if (listOfMovies.length) {
-      listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} index={i} addRemove={this.props.removeMovie} movies={movie} />);
+      listOfMovies = listOfMovies.map((movie, i) => {
+        return (
+          <Movie key={i} 
+            addRemove={this.props.removeMovie} 
+            movies={movie}
+            addRemoveText="Remove" />
+        )
+      });
     }
 
     return (

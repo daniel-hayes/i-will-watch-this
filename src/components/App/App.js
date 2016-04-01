@@ -20,6 +20,7 @@ export default class App extends Component {
 
 		this.handleOverlay = this.handleOverlay.bind(this);
     this.removeMovie = this.removeMovie.bind(this);
+    this.addToList = this.addToList.bind(this);
 	}
 
 	handleOverlay() {
@@ -30,24 +31,22 @@ export default class App extends Component {
 
   removeMovie(index) {
     let newList = this.state.moviesToWatch;
-    console.log(index, 'index');
-    console.log(newList.indexOf(index), 'indexof');
+    newList.splice(newList.indexOf(index), 1);
+    console.log(this.state.moviesToWatch);
     console.log(newList);
-    // newList.splice(index, 1);
-    // console.log(newList);
-    // this.setState({ moviesToWatch: newList });
+    this.setState({ moviesToWatch: newList });
+  }
+
+  addToList(returnedMovie) {
+    this.setState({ moviesToWatch: this.state.moviesToWatch.concat([returnedMovie])});
   }
 
   componentDidMount() {
-    this.ref = baseUrl.syncState('movieList', {
+    baseUrl.syncState('movieList', {
       context: this,
       state: 'moviesToWatch',
       asArray: true
     });
-  }
-
-  componentWillUnmount(){
-    baseUrl.removeBinding(this.ref);
   }
 
 	render() {
@@ -57,7 +56,7 @@ export default class App extends Component {
 			  <div className="content">
 		    	<MovieList moviesToWatch={this.state.moviesToWatch} removeMovie={this.removeMovie} />
 		      <Footer />
-		      {this.state.overlayOpen ? <Overlay closeOverlay={this.handleOverlay} /> : ''}
+		      {this.state.overlayOpen ? <Overlay closeOverlay={this.handleOverlay} addToList={this.addToList} /> : ''}
 			  </div>
 		  </div>
 		);
