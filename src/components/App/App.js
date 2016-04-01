@@ -30,30 +30,34 @@ export default class App extends Component {
 
   removeMovie(index) {
     let newList = this.state.moviesToWatch;
-    newList.splice(index, 1);
-    this.setState({ moviesToWatch: newList });
+    console.log(index, 'index');
+    console.log(newList.indexOf(index), 'indexof');
+    console.log(newList);
+    // newList.splice(index, 1);
+    // console.log(newList);
+    // this.setState({ moviesToWatch: newList });
   }
 
   componentDidMount() {
-    baseUrl.syncState('movieList', {
+    this.ref = baseUrl.syncState('movieList', {
       context: this,
       state: 'moviesToWatch',
       asArray: true
     });
   }
 
+  componentWillUnmount(){
+    baseUrl.removeBinding(this.ref);
+  }
+
 	render() {
-		let overlay = this.state.overlayOpen === true ? <Overlay closeOverlay={this.handleOverlay} /> : '';
-
-    console.log(this.state.moviesToWatch);
-
 		return (
 		  <div className="container">
 		  	<Header toggleOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch.length} />
 			  <div className="content">
 		    	<MovieList moviesToWatch={this.state.moviesToWatch} removeMovie={this.removeMovie} />
 		      <Footer />
-		      {overlay}
+		      {this.state.overlayOpen ? <Overlay closeOverlay={this.handleOverlay} /> : ''}
 			  </div>
 		  </div>
 		);

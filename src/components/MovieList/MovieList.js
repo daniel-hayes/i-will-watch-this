@@ -27,7 +27,7 @@ export default class MovieList extends Component {
     }
 
     if (listOfMovies.length) {
-      listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} index={i} remove={this.props.removeMovie} movies={movie} />);
+      listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} index={i} addRemove={this.props.removeMovie} movies={movie} />);
     }
 
     return (

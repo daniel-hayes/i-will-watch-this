@@ -32,12 +32,17 @@ export default class SearchedMovie extends Component {
   }
 
   addToList(returnedMovie) {
+    console.log(returnedMovie);
+    console.log(returnedMovie.id);
+
     baseUrl.post(`movieList/${returnedMovie.id}`, {
       data: {
+        id: returnedMovie.id,
         title: returnedMovie.title,
-        posterPath: returnedMovie['poster_path'],
+        poster_path: returnedMovie['poster_path'],
         overview: returnedMovie.overview,
-        releaseDate: returnedMovie['release_date']
+        release_date: returnedMovie['release_date'],
+        dateAdded: new Date()
       }
     });
   }

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import SearchedMovie from '../SearchedMovie';
-import { apiKey } from '../../../config';
+import Movie from '../Movie';
+import { apiKey, posterPath, firebaseUrl } from '../../../config';
 import './SearchMovies.scss';
+import Rebase from 're-base';
+
+const baseUrl = Rebase.createClass(firebaseUrl);
 
 let defaultWidth = 30;
 
@@ -13,9 +16,11 @@ export default class SearchMovies extends Component {
       returnedMovies: '',
       searchValue: '',
       inputWidth: {width: defaultWidth},
-      mounting: false
+      mounting: false,
+      listStatus: 'Add'
     };
 
+    this.addToList = this.addToList.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
@@ -43,8 +48,30 @@ export default class SearchMovies extends Component {
     }
   }
 
+  addToList(returnedMovie) {
+    console.log(returnedMovie);
+    console.log(returnedMovie.id);
+
+    baseUrl.post(`movieList/${returnedMovie.id}`, {
+      data: {
+        id: returnedMovie.id,
+        title: returnedMovie.title,
+        poster_path: returnedMovie['poster_path'],
+        overview: returnedMovie.overview,
+        release_date: returnedMovie['release_date']
+      }
+    });
+  }
+
   searchDropDown(searchedMovies) {
-    searchedMovies = searchedMovies.map((movieVal, i) => <SearchedMovie key={i} returnedMovie={movieVal} /> );
+    searchedMovies = searchedMovies.map((movieVal, i) => {
+      return (
+        <Movie key={i} 
+          movies={movieVal} 
+          addRemove={this.addToList} />
+      );
+    });
+
     this.setState({
       returnedMovies: searchedMovies
     });
