@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { apiKey } from '../../../config';
 import Movie from '../Movie';
+import helpers from '../../utils/helpers';
 import './SearchMovies.scss';
 
 let defaultWidth = 30;
@@ -29,12 +30,9 @@ export default class SearchMovies extends Component {
 
     // call movie db api
     if (value.length > 2) {
-      fetch('http://api.themoviedb.org/3/search/movie?query=' + value + '&api_key=' + apiKey, {
-        method: 'get'
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          this.searchDropDown(data.results);
+      helpers.searchMovieDb(value)
+        .then((response) => {
+          this.searchDropDown(response.data.results);
         })
         .catch((err) => console.log(err));
     } else {
