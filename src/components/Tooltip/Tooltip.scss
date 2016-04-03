@@ -3,13 +3,36 @@
 .tooltip {
   position: absolute;
   background: $black;
+  color: $white;
   font-size: 1.4rem;
-  width: 180px;
+  max-width: 180px;
   z-index: 1;
   padding: 10px;
   opacity: 0;
-  transition: all 200ms;
+  transition: top 300ms, opacity 200ms, visibility 200ms;
   visibility: hidden;
   left: 50%;
+  top: 75%;
   transform: translateX(-50%);
+
+  &:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-bottom: 8px solid $black;
+    border-top: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    top: -16px;
+    left: 50%;
+    margin-left: -8px;
+  }
+
+  .tooltip-wrapper:hover & {
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+  }
 }

@@ -19,7 +19,7 @@ const PosterAction = (props) => {
 
   return (
     <div className="poster-action">
-      {props.overview ? <div className="info-wrapper"><i className="icon-info"></i><Tooltip toolTipVal={props.overview} /></div> : null}
+      {props.overview ? <div className="info-wrapper tooltip-wrapper"><i className="icon-info"></i><Tooltip toolTipVal={props.overview} /></div> : null}
       <div className="poster-action-inner text-center">
         <p>
           {props.added ? 'Added' : props.addRemoveText}

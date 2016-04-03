@@ -42,7 +42,6 @@ export default class Movie extends Component {
         </div>
         <PosterAction handleClick={this.handleClick}
           addRemoveText={this.props.addRemoveText}
-          overview={this.props.movies.overview}
           added={this.state.added} />
       </li>
     );
