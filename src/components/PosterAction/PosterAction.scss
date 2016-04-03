@@ -18,7 +18,7 @@
     margin-top: 10px;
   }
 
-  i {
+  i.action {
     background: none;
     border-radius: 25px;
     width: 50px;
@@ -30,7 +30,7 @@
     transition: border 200ms;
   }
 
-  i:hover {
+  i.action:hover {
     border-color: $white;
   }
 
@@ -43,6 +43,27 @@
     border-color: $white;
   }
 
+  i.icon-info {
+    font-size: 2rem;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 6px 0;
+  }
+
+  .info-wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+  }
+
+  .info-wrapper:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
   &-inner {
     position: relative;
     @include center();
@@ -50,7 +71,7 @@
 
   .not-saved:hover &,
   .saved & {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.7);
     opacity: 1;
     font-size: 3rem;
     color: $white;

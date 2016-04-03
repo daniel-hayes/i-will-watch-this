@@ -1,0 +1,15 @@
+@import '../styles/variables.scss';
+
+.tooltip {
+  position: absolute;
+  background: $black;
+  font-size: 1.4rem;
+  width: 180px;
+  z-index: 1;
+  padding: 10px;
+  opacity: 0;
+  transition: all 200ms;
+  visibility: hidden;
+  left: 50%;
+  transform: translateX(-50%);
+}

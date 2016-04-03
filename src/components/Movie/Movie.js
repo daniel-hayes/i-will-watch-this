@@ -40,7 +40,10 @@ export default class Movie extends Component {
         <div className="title-wrapper">
           <p className="title">{this.props.movies.title}</p>
         </div>
-        <PosterAction handleClick={this.handleClick} addRemoveText={this.props.addRemoveText} added={this.state.added} />
+        <PosterAction handleClick={this.handleClick}
+          addRemoveText={this.props.addRemoveText}
+          overview={this.props.movies.overview}
+          added={this.state.added} />
       </li>
     );
   }
