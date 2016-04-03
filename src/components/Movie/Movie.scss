@@ -52,28 +52,3 @@
     }
   }
 }
-
-.poster-action {  
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0;
-
-  i {
-    cursor: pointer;
-  }
-
-  &-inner {
-    position: relative;
-    @include center();
-  }
-
-  .movie:hover & {
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 1;
-    font-size: 3rem;
-    color: $white;
-  }
-}

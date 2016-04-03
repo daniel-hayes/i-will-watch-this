@@ -32,7 +32,7 @@ export default class SearchMovies extends Component {
     if (value.length > 2) {
       helpers.searchMovieDb(value)
         .then((response) => {
-          this.searchDropDown(response.data.results);
+          this.searchedMovies(response.data.results);
         })
         .catch((err) => console.log(err));
     } else {
@@ -41,12 +41,13 @@ export default class SearchMovies extends Component {
     }
   }
 
-  searchDropDown(searchedMovies) {
+  searchedMovies(searchedMovies) {
     searchedMovies = searchedMovies.map((movieVal, i) => {
       return (
-        <Movie key={i} 
-          movies={movieVal} 
+        <Movie key={i}
+          movies={movieVal}
           addRemove={this.props.addToList}
+          savedMovies={this.props.savedMovies}
           addRemoveText="Add" />
       )
     });

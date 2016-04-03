@@ -1,0 +1,58 @@
+@import '../styles/variables.scss';
+
+.poster-action {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 200ms;
+
+  p {
+    font-size: 3rem;
+  }
+
+  span {
+    display: block;
+    margin-top: 10px;
+  }
+
+  i {
+    background: none;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    padding: 9px 0;
+    border: 2px solid transparent;
+    transition: border 200ms;
+  }
+
+  i:hover {
+    border-color: $white;
+  }
+
+  i.icon-plus,
+  i.icon-cancel {
+    cursor: pointer;
+  }
+
+  i.icon-ok {
+    border-color: $white;
+  }
+
+  &-inner {
+    position: relative;
+    @include center();
+  }
+
+  .not-saved:hover &,
+  .saved & {
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    font-size: 3rem;
+    color: $white;
+  }
+}

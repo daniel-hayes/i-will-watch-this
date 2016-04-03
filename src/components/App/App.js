@@ -56,7 +56,7 @@ export default class App extends Component {
 			  <div className="content">
 		    	<MovieList moviesToWatch={this.state.moviesToWatch} removeMovie={this.removeMovie} />
 		      <Footer />
-		      {this.state.overlayOpen ? <Overlay closeOverlay={this.handleOverlay} addToList={this.addToList} /> : ''}
+		      {this.state.overlayOpen ? <Overlay closeOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch} addToList={this.addToList} /> : ''}
 			  </div>
 		  </div>
 		);
