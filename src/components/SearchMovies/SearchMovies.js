@@ -13,11 +13,14 @@ export default class SearchMovies extends Component {
     this.state = {
       returnedMovies: '',
       searchValue: '',
+      loadPage: 1,
+      totalPages: 0,
       inputWidth: {width: defaultWidth},
       mounting: false
     };
 
     this.handleInput = this.handleInput.bind(this);
+    this.loadMoreMovies = this.loadMoreMovies.bind(this);
   }
 
   handleInput(event) {
@@ -32,19 +35,26 @@ export default class SearchMovies extends Component {
     if (value.length > 2) {
       helpers.searchMovieDb(value)
         .then((response) => {
-          this.searchedMovies(response.data.results);
+          this.searchedMovies(response.data);
         })
         .catch((err) => console.log(err));
     } else {
       // reset list of movies
       this.setState({returnedMovies: ''});
     }
+
+    this.setState({
+      loadPage: 1,
+      totalPages: 0
+    });
   }
 
   searchedMovies(searchedMovies) {
-    searchedMovies = searchedMovies.map((movieVal, i) => {
+    let totalPages = searchedMovies['total_pages'];
+
+    searchedMovies = searchedMovies.results.map((movieVal) => {
       return (
-        <Movie key={i}
+        <Movie key={movieVal.id + this.state.loadPage}
           movies={movieVal}
           addRemove={this.props.addToList}
           savedMovies={this.props.savedMovies}
@@ -52,9 +62,24 @@ export default class SearchMovies extends Component {
       )
     });
 
+    let loadMore = this.state.loadPage === 1 ? searchedMovies : this.state.returnedMovies.concat(searchedMovies);
+
     this.setState({
-      returnedMovies: searchedMovies
+      returnedMovies: loadMore,
+      totalPages: totalPages
     });
+  }
+
+  loadMoreMovies() {
+    let nextPage = this.state.loadPage + 1;
+
+    helpers.searchMovieDb(this.state.searchValue, nextPage)
+      .then((response) => {
+        this.searchedMovies(response.data);
+      })
+      .catch((err) => console.log(err));
+
+    this.setState({ loadPage: nextPage });
   }
 
   componentDidUpdate() {
@@ -79,6 +104,9 @@ export default class SearchMovies extends Component {
         </label>
         <span id="hiddenSearch" className="hidden-search-value">{this.state.searchValue}</span>
         <ul className="content">{this.state.returnedMovies}</ul>
+        <div className="load-more-wrapper text-center">
+          {this.state.totalPages > 1 && this.state.loadPage < this.state.totalPages ? <button className="load-more lrg-txt" onClick={this.loadMoreMovies}>Load More</button> : null}
+        </div>
       </div>
     );
   }

@@ -33,3 +33,27 @@
   left: 0;
   white-space: pre;
 }
+
+.load-more {
+  background: transparent;
+  border: 2px solid $medBlue;
+  padding: 12px 30px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: all 200ms;
+  color: $medBlue;
+  font-weight: bold;
+
+  &:hover {
+    color: $white;
+    background: $medBlue;
+  }
+
+  &-wrapper {
+    float: left;
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+
+}
