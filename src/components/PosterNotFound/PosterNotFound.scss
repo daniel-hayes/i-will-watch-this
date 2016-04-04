@@ -9,10 +9,7 @@
 		position: absolute;
     padding-left: 10px;
     padding-right: 10px;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
+    @include center();
 
     p {
     	font-size: 2rem;

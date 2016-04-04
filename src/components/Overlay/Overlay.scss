@@ -1,3 +1,5 @@
+@import '../styles/variables.scss';
+
 .overlay {
   position: fixed;
   top: 0;
@@ -7,15 +9,22 @@
   opacity: 1;
   height: 100%;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.97);
+  background-color: $overlay;
   overflow-y: scroll;
   overflow-x: hidden;
   z-index: 2;
 
   .icon-cancel {
+    position: fixed;
     display: block;
     text-align: right;
     font-size: 4rem;
     cursor: pointer;
+    z-index: 1;
+    right: 10px;
+  }
+
+  .lg-txt {
+    padding: 14px 0;
   }
 }

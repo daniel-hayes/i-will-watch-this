@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MovieList from '../MovieList';
 import Header from '../Header';
-import Nav from '../Nav';
 import Overlay from '../Overlay';
 import Footer from '../Footer';
 import '../App/App.scss';
@@ -19,14 +18,10 @@ export default class App extends Component {
       moviesToWatch: []
 		};
 
-		this.handleNav = this.handleNav.bind(this);
 		this.handleOverlay = this.handleOverlay.bind(this);
     this.removeMovie = this.removeMovie.bind(this);
+    this.addToList = this.addToList.bind(this);
 	}
-
-	handleNav() {
-    document.body.classList.toggle('nav-open');
-  }
 
 	handleOverlay() {
 		let overlayState = this.state.overlayOpen === false ? true : false;
@@ -34,11 +29,16 @@ export default class App extends Component {
 		document.body.classList.toggle('overflow-hidden');
 	}
 
-
   removeMovie(index) {
     let newList = this.state.moviesToWatch;
-    newList.splice(index, 1);
+    newList.splice(newList.indexOf(index), 1);
+    console.log(this.state.moviesToWatch);
+    console.log(newList);
     this.setState({ moviesToWatch: newList });
+  }
+
+  addToList(returnedMovie) {
+    this.setState({ moviesToWatch: this.state.moviesToWatch.concat([returnedMovie])});
   }
 
   componentDidMount() {
@@ -50,18 +50,13 @@ export default class App extends Component {
   }
 
 	render() {
-		let overlay = this.state.overlayOpen === true ? <Overlay closeOverlay={this.handleOverlay} /> : '';
-
-    console.log(this.state.moviesToWatch);
-
 		return (
 		  <div className="container">
-		    <Nav />
-		  	<Header toggleNav={this.handleNav} toggleOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch.length} />
+		  	<Header toggleOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch.length} />
 			  <div className="content">
 		    	<MovieList moviesToWatch={this.state.moviesToWatch} removeMovie={this.removeMovie} />
 		      <Footer />
-		      {overlay}
+		      {this.state.overlayOpen ? <Overlay closeOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch} addToList={this.addToList} /> : ''}
 			  </div>
 		  </div>
 		);

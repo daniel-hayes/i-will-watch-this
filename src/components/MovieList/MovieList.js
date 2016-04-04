@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Movie from '../Movie';
 import './MovieList.scss';
 
-
 export default class MovieList extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +18,7 @@ export default class MovieList extends Component {
   }
 
   render() {
-    let listOfMovies = this.props.moviesToWatch,
+    let listOfMovies = this.props.moviesToWatch.reverse(),
         searchString = this.state.searchString;
 
     if (searchString.length) {
@@ -27,12 +26,22 @@ export default class MovieList extends Component {
     }
 
     if (listOfMovies.length) {
-      listOfMovies = listOfMovies.map((movie, i) => <Movie key={i} index={i} remove={this.props.removeMovie} movies={movie} />);
+      listOfMovies = listOfMovies.map((movie, i) => {
+        return (
+          <Movie key={i} 
+            addRemove={this.props.removeMovie} 
+            movies={movie}
+            addRemoveText="Remove" />
+        )
+      });
     }
 
     return (
       <div className="movie-list-wrapper">
-        <input type="text" className="filter" placeholder="Search saved movies" onChange={this.handleFilter} />
+        <label className="filter-label" for="filter">
+          <i className="icon-search"></i>
+          <input type="text" className="filter" id="filter" placeholder="Search saved movies" onChange={this.handleFilter} />
+        </label>
         <ul className="movie-list-container">{listOfMovies}</ul>
       </div>
     );

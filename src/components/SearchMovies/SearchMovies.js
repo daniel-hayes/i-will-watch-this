@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import SearchedMovie from '../SearchedMovie';
 import { apiKey } from '../../../config';
+import Movie from '../Movie';
+import helpers from '../../utils/helpers';
 import './SearchMovies.scss';
 
 let defaultWidth = 30;
@@ -12,11 +13,14 @@ export default class SearchMovies extends Component {
     this.state = {
       returnedMovies: '',
       searchValue: '',
+      loadPage: 1,
+      totalPages: 0,
       inputWidth: {width: defaultWidth},
       mounting: false
     };
 
     this.handleInput = this.handleInput.bind(this);
+    this.loadMoreMovies = this.loadMoreMovies.bind(this);
   }
 
   handleInput(event) {
@@ -29,25 +33,53 @@ export default class SearchMovies extends Component {
 
     // call movie db api
     if (value.length > 2) {
-      fetch('http://api.themoviedb.org/3/search/movie?query=' + value + '&api_key=' + apiKey, {
-        method: 'get'
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          this.searchDropDown(data.results);
+      helpers.searchMovieDb(value)
+        .then((response) => {
+          this.searchedMovies(response.data);
         })
         .catch((err) => console.log(err));
     } else {
       // reset list of movies
       this.setState({returnedMovies: ''});
     }
+
+    this.setState({
+      loadPage: 1,
+      totalPages: 0
+    });
   }
 
-  searchDropDown(searchedMovies) {
-    searchedMovies = searchedMovies.map((movieVal, i) => <SearchedMovie key={i} returnedMovie={movieVal} /> );
-    this.setState({
-      returnedMovies: searchedMovies
+  searchedMovies(searchedMovies) {
+    let totalPages = searchedMovies['total_pages'];
+
+    searchedMovies = searchedMovies.results.map((movieVal) => {
+      return (
+        <Movie key={movieVal.id + this.state.loadPage}
+          movies={movieVal}
+          addRemove={this.props.addToList}
+          savedMovies={this.props.savedMovies}
+          addRemoveText="Add" />
+      )
     });
+
+    let loadMore = this.state.loadPage === 1 ? searchedMovies : this.state.returnedMovies.concat(searchedMovies);
+
+    this.setState({
+      returnedMovies: loadMore,
+      totalPages: totalPages
+    });
+  }
+
+  loadMoreMovies() {
+    let nextPage = this.state.loadPage + 1;
+
+    helpers.searchMovieDb(this.state.searchValue, nextPage)
+      .then((response) => {
+        this.searchedMovies(response.data);
+      })
+      .catch((err) => console.log(err));
+
+    this.setState({ loadPage: nextPage });
   }
 
   componentDidUpdate() {
@@ -72,6 +104,9 @@ export default class SearchMovies extends Component {
         </label>
         <span id="hiddenSearch" className="hidden-search-value">{this.state.searchValue}</span>
         <ul className="content">{this.state.returnedMovies}</ul>
+        <div className="load-more-wrapper text-center">
+          {this.state.totalPages > 1 && this.state.loadPage < this.state.totalPages ? <button className="load-more lrg-txt" onClick={this.loadMoreMovies}>Load More</button> : null}
+        </div>
       </div>
     );
   }

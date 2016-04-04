@@ -23,23 +23,16 @@ body {
   background: $light;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  &.nav-open {
-    @include preventScroll();
-  }
 }
 
 main {
 	height: 100%;
   transition-duration: 300ms;
   position: relative;
-
-  .nav-open & {
-    left: 230px;
-  }
 }
 
-input[type="text"] {
+input[type="text"],
+button {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -91,13 +84,14 @@ p {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// icons
+/**
+* Icons
+**/
+
 .icon-plus:before { content: '\e800'; }
-.icon-list:before { content: '\e801'; }
+.icon-ok:before { content: '\e801'; }
 .icon-search:before { content: '\e802'; }
-.icon-list-add:before { content: '\e803'; }
-.icon-cancel:before { content: '\e804'; }
-.icon-export:before { content: '\e805'; }
-.icon-heart:before { content: '\e806'; }
-.icon-heart-empty:before { content: '\e807'; }
-.icon-video:before { content: '\e808'; }
+.icon-cancel:before { content: '\e803'; }
+.icon-export:before { content: '\e804'; }
+.icon-video:before { content: '\e805'; }
+.icon-info:before { content: '\e806'; }
