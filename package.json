@@ -1,8 +1,14 @@
 {
   "name": "i-will-watch-this",
+  "author": "Daniel Hayes",
   "version": "1.0.0",
-  "description": "",
+  "description": "A todo list focused on keeping track of movies you want to watch. (React.js, ES6, Webpack, Firebase)",
+  "license": "MIT",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daniel-hayes/i-will-watch-this"
+  },
   "scripts": {
     "production": "webpack -p",
     "start": "webpack-dev-server",
@@ -35,6 +41,5 @@
   "dependencies": {
     "axios": "^0.9.1",
     "re-base": "^1.5.1",
-    "react-router": "^2.0.1"
   }
 }
