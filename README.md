@@ -1,7 +1,5 @@
 # I Will Watch This
 
-A todo list focused on keeping track of movies you want to watch. (React.js, ES6, Webpack, Firebase) 
-
 ![Demo](http://i.imgur.com/vDFYLdm.gif)
 
 This project was mostly an experiment to gain a better understanding of React. It uses [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api) to search for new movies to add to your list, and stores your saved movies in [Firebase](https://www.firebase.com/) Database. You can easily make your own version of this app by adding a config file to your project that will store your API keys.
