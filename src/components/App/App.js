@@ -32,8 +32,6 @@ export default class App extends Component {
   removeMovie(index) {
     let newList = this.state.moviesToWatch;
     newList.splice(newList.indexOf(index), 1);
-    console.log(this.state.moviesToWatch);
-    console.log(newList);
     this.setState({ moviesToWatch: newList });
   }
 
@@ -55,9 +53,9 @@ export default class App extends Component {
 		  	<Header toggleOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch.length} />
 			  <div className="content">
 		    	<MovieList moviesToWatch={this.state.moviesToWatch} removeMovie={this.removeMovie} />
-		      <Footer />
 		      {this.state.overlayOpen ? <Overlay closeOverlay={this.handleOverlay} savedMovies={this.state.moviesToWatch} addToList={this.addToList} /> : ''}
 			  </div>
+			  <Footer />
 		  </div>
 		);
 	}
